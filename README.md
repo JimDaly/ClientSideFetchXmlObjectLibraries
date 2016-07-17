@@ -61,7 +61,7 @@ for these object could not be modified.
 ##When to use these libraries?
 These libraries are relatively large (3000+ lines of code) and even minified they are about 40KB. For the typical use
 case where a developer simply needs to configure a relatively static query, or just include a few variables, the approach
-described in [Ordinary use cases for client-side fetchXml queries](#Ordinary-use-cases-for-client-side-fetchXml-queries) 
+described in [Ordinary use cases for client-side fetchXml queries](#ordinary-use-cases-for-client-side-fetchxml-queries) 
 is still probably the most effective approach for client-side scripts.
 
 I expect that these libraries may be helpful when a developer needs to provide a user interface like the advanced find tool
@@ -195,6 +195,6 @@ seem like this is something the CRM product team thinks people want an need. You
 certification exams.
 * I wrote these on my own time just as an experiment. If I include them in the SDK we are obligated to maintain them.
 * I used some code I found on stack overflow to implement hash values for classes which may be in a collection. 
-(See [Why do some classes have a read-only hash property?](#Why-do-some-classes-have-a-read-only-hash-property?)) 
+(See [Why do some classes have a read-only hash property?](#why-do-some-classes-have-a-read-only-hash-property)) 
 This is not allowed for official Microsoft samples.
 * I would like to share these with the community. If you have an enhancement, GitHub makes it easy for you to contribute it.
