@@ -4,14 +4,14 @@ JavaScript and TypeScript libraries which provide an object model for Microsoft 
 These libraries provide an object model to compose FetchXml queries using either JavaScript directly, 
 or by using TypeScript. 
 ##In this README
-* [Ordinary use cases for client-side fetchXml queries](#Ordinary-use-cases-for-client-side-fetchXml-queries)
-* [Why these libraries?](#Why-these-libraries?)
-* [Convert from XML to object and back](#Convert-from-XML-to-object-and-back)
-* [Why two separate libraries?](#Why-two-separate-libraries?)
-* [When to use these libraries?](#When-to-use-these-libraries?)
-* [Examples](#Examples)
-* [Why do some classes have a read-only hash property?](#Why-do-some-classes-have-a-read-only-hash-property?)
-* [Why aren't these in the CRM SDK?](#Why-aren't-these-in-the-CRM SDK?)
+* [Ordinary use cases for client-side fetchXml queries](#ordinary-use-cases-for-client-side-fetchxml-queries)
+* [Why these libraries?](#why-these-libraries)
+* [Convert from XML to object and back](#convert-from-xml-to-object-and-back)
+* [Why two separate libraries?](#why-two-separate-libraries)
+* [When to use these libraries?](#when-to-use-these-libraries)
+* [Examples](#examples)
+* [Why do some classes have a read-only hash property?](#why-do-some-classes-have-a-read-only-hash-property)
+* [Why aren't these in the CRM SDK?](#why-arent-these-in-the-crm-sdk)
 
 ##Ordinary use cases for client-side fetchXml queries
 Typically developers will use the advanced find tool in the CRM web application to compose a query and then 
