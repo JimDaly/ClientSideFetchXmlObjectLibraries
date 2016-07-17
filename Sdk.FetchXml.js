@@ -579,15 +579,6 @@ Sdk.FetchXml = Sdk.FetchXml || {};
 
         }
 
-        //var conditionNodes = xml.querySelectorAll("condition");
-        //for (var i = 0; i < conditionNodes.length; i++) {
-        //    filterObj.addCondition(conditionFromXml(conditionNodes[i]));
-        //}
-
-        //var filterNodes = xml.querySelectorAll("filter");
-        //for (var i = 0; i < filterNodes.length; i++) {
-        //    filterObj.addFilter(filterFromXml(filterNodes[i]));
-        //}
 
         return filterObj;
     }
@@ -610,32 +601,7 @@ Sdk.FetchXml = Sdk.FetchXml || {};
             xml.attributes.getNamedItem("operator").nodeValue
             );
 
-        //var atts = xml.attributes;
-        //for (var i = 0; i < atts.length; i++) {
-        //    var name = atts[i].nodeName;
-        //    var value = atts[i].nodeValue;
-        //    switch (name) {
-        //        case "column":
-        //        case "entityname":
-        //        case "aggregate":
-        //        case "alias":
-        //        case "uiname":
-        //        case "uitype":
-        //            conditionObj[name] = value;
-        //            break;
-        //        case "rowaggregate":
-        //            conditionObj.rowAggregate = value;
-        //            break;
-        //        case "uihidden":
-        //            conditionObj.uihidden = convertFetchBoolType(value);
-        //            break;
-        //        case "value":
-        //            conditionObj.addValue(value);
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //}
+
 
         parseAttributes(xml, conditionObj, conditionSwitch)
 
@@ -647,10 +613,7 @@ Sdk.FetchXml = Sdk.FetchXml || {};
 
         }
 
-        //var valueNodes = xml.querySelectorAll("value");
-        //for (var i = 0; i < valueNodes.length; i++) {
-        //    conditionObj.addValue(valueFromXml(valueNodes[i]));
-        //}
+
 
         return conditionObj;
     }

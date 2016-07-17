@@ -250,29 +250,6 @@
 
             return attObj;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
     @sealed
     export class condition {
@@ -745,8 +722,6 @@
             var operator = xml.attributes.getNamedItem("operator").nodeValue;
 
             var conditionObj = new Sdk.FetchXml.condition(<string>attributeName, <Operator>operator);
-
-
 
             Sdk.FetchXml.Util.parseAttributes(xml, conditionObj, (conditionObj, name, value) => {
                 switch (name) {
