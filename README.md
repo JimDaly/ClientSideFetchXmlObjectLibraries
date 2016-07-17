@@ -11,6 +11,7 @@ or by using TypeScript.
 * [When to use these libraries?](#when-to-use-these-libraries)
 * [Examples](#examples)
 * [Why do some classes have a read-only hash property?](#why-do-some-classes-have-a-read-only-hash-property)
+* [How were these tested?](#how-were-these-tested)
 * [Why aren't these in the CRM SDK?](#why-arent-these-in-the-crm-sdk)
 
 ##Ordinary use cases for client-side fetchXml queries
@@ -187,6 +188,50 @@ to an item in a collection.
 For  `Sdk.FetchXml.entity`, `Sdk.FetchXml.linkEntity` and `Sdk.FetchXml.condition`, there are `removeAttributeByName` and `removeValueByValue` methods 
 because it seems that people will want to remove attributes or values based on the name or value directly.
 
+##How were these tested?
+To test these I wrote a script to retrieve the fetchXML for all the system views (savedquery entity) and pass the string to the 
+`Sdk.FetchXml.fetch.fromXml` method to instantiate the object. Then I called the `toXml` method on that instantiated object. 
+After a few normalization adjustments, I compared the length of the strings to make sure they were identical.
+Most of the normalization adjustments had to do with inconsistent closing of elements, whether default attribute values were set, 
+and different ways to set boolean values.
+The following is the function I used that highlight where differences were found that had no impact on the query defined:
+```javascript
+function normalizeStrings(str) {
+
+    if (str.indexOf(" distinct=\"false\"") > -1) {
+        str = str.replace(" distinct=\"false\"", "");
+    }
+
+    if (str.indexOf("\"></link-entity>") > -1) {
+        str = str.replace("\"></link-entity>", "\" />");
+    }
+
+    if (str.indexOf("\"></order>") > -1) {
+        str = str.replace("\"></order>", "\" />");
+    }
+
+    if (str.indexOf("\"></condition>") > -1) {
+        str = str.replace("\"></condition>", "\" />");
+    }
+
+    if (str.indexOf("isquickfindfields=\"1\"") > -1) {
+        str = str.replace("isquickfindfields=\"1\"", "isquickfindfields=\"true\"");
+    }
+
+    if (str.indexOf("<filter>") > -1) {
+        str = str.replace("<filter>", "<filter type=\"and\">");
+    }
+
+    if (str.indexOf("<filter />") > -1) {
+        str = str.replace("<filter />", "<filter type=\"and\" />");
+    }
+
+    if (str.indexOf(" descending=\"false\"") > -1) {
+        str = str.replace(" descending=\"false\"", "");
+    }
+    return str;
+}
+```
 
 ##Why aren't these in the CRM SDK?
 A combination of reasons:
