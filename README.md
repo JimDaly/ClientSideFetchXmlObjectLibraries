@@ -40,16 +40,16 @@ to set every property and add or remove objects from collections. These methods 
 the object that they are applied to.
 
 ##Convert from XML to object and back
-Both of these libraries provide a `Sdk.FetchXml.fromXml` static method which accept a fetchXML string and 
+Both of these libraries provide a `Sdk.FetchXml.fetch.fromXml` static method which accept a fetchXML string and 
 return an `Sdk.FetchXML.fetch` object with all the child objects contained within it. The 
 `Sdk.FetchXml.fetch.toXml` method returns a string that is the valid fetchXml for the objects contained within it.
 So this is basically a way to deserialize and serialize the fetchXml into the `Sdk.FetchXml.fetch` object.
 
 ##Why two separate libraries?
-I wrote the JavaScript library first. Then I wrote the TypeScript version because more and more people have been 
-asking for TypeScript libraries. Not having a lot of experience with TypeScript, I wanted to see how it could be
-used to get the same result I'm used to getting with JavaScript. In the end, I was able to get the same interfaces
-but I had to apply some different strategies.
+At the end of the day, both of these result in a JavaScript library. I wrote the JavaScript library first. 
+Then I wrote the TypeScript version because more and more people have been asking for TypeScript libraries. 
+Not having a lot of experience with TypeScript, I wanted to see how it could be used to get the same result 
+I'm used to getting with plain old JavaScript. In the end, I was able to get the same interfaces but I had to apply some different strategies.
 
 For example, in JavaScript I prefer to return sealed objects because I want to eliminate the possiblity that people
 might add or remove the properties of the class instances. In Typescript I found I had to enable 
@@ -58,6 +58,10 @@ need to enable `experimentalDecorators` and use a tsconfig.json with this settin
 like to use [Object.freeze](https://msdn.microsoft.com/en-us/library/ff806186.aspx) for static objects I use for enumerations.
 Seems that TypeScript enumerations can only have number values, so I used decorators again to ensure that the properties
 for these object could not be modified.
+
+I certainly like that the IntelliSense provided for TypeScript is much more solid that the extremely fragile IntelliSense
+that the JavaScript language service provides in Visual Studio. But I think I'd need to build an full TypeScript application
+before it becomes my my preferred way to write JavaScript.
 
 ##When to use these libraries?
 These libraries are relatively large (3000+ lines of code) and even minified they are about 40KB. For the typical use
@@ -68,7 +72,7 @@ is still probably the most effective approach for client-side scripts.
 I expect that these libraries may be helpful when a developer needs to provide a user interface like the advanced find tool
 in the CRM application. I can imagine leveraging CRM metadata  together with these libraries to create this experience.
 Or perhaps a developer will leverage the objects in this library to provide an IQueryable type interface specifically for 
-Microsoft CRM queries.
+Microsoft CRM queries? Or perhaps some other Node.js or Cordova application I can't even imagine.
 
 If you use these libraries, please let me know how you use them.
 
@@ -237,10 +241,10 @@ function normalizeStrings(str) {
 ##Why aren't these in the CRM SDK?
 A combination of reasons:
 * It isn't known whether people are interested in this style of composing queries. If we publish them in the SDK it would 
-seem like this is something the CRM product team thinks people want an need. You might start seeing questions about it on 
+seem like this is something the CRM product team thinks people want and need. You might start seeing questions about it on 
 certification exams.
 * I wrote these on my own time just as an experiment. If I include them in the SDK we are obligated to maintain them.
 * I used some code I found on stack overflow to implement hash values for classes which may be in a collection. 
 (See [Why do some classes have a read-only hash property?](#why-do-some-classes-have-a-read-only-hash-property)) 
 This is not allowed for official Microsoft samples.
-* I would like to share these with the community. If you have an enhancement, GitHub makes it easy for you to contribute it.
+* I would like to share these with the community. If you have an enhancement, GitHub makes it easy for you to contribute to it or fork it.
