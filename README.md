@@ -95,7 +95,7 @@ The following JavaScript produces the equivalent XML:
         .addAttribute("accountid")
         .addAttribute("name")
         .addLinkEntity(
-            ns.linkEntity("systemuser")
+            ns.linkEntity("systemuser",null,"owninguser")
             .addFilter(
                 ns.filter(ns.FilterType.And)
                 .addCondition(
@@ -123,6 +123,7 @@ Also note the exclusive use of the chained add* methods to compose the object. T
     var filter = ns.filter(ns.FilterType.And);
     filter.conditions = [condition];
     var linkEntity = ns.linkEntity("systemuser");
+    linkEntity.to = "owninguser";
     linkEntity.filters = [filter];
     var entity = ns.entity("account", [ns.attribute("accountid"), ns.attribute("name")]);
     entity.linkEntities = [linkEntity];
@@ -137,7 +138,7 @@ But I think this style is difficult to read. But these can also be used in combi
     var filter = ns.filter(ns.FilterType.And)
     .addCondition(condition);
     
-    var linkEntity = ns.linkEntity("systemuser")
+    var linkEntity = ns.linkEntity("systemuser",null,"owninguser")
     .addFilter(filter);
     
     var entity = ns.entity("account", [ns.attribute("accountid"), ns.attribute("name")])
@@ -159,7 +160,7 @@ TypeScript is very similar to JavaScript except that you must use the `new` keyw
             .addAttribute("accountid")
             .addAttribute("name")
             .addLinkEntity(
-            new ns.linkEntity("systemuser")
+            new ns.linkEntity("systemuser",null,"owninguser")
                 .addFilter(
                 new ns.filter(ns.FilterType.And)
                     .addCondition(
