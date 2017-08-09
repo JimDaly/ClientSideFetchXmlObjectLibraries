@@ -3,7 +3,7 @@ JavaScript and TypeScript libraries which provide an object model for Microsoft 
 
 These libraries provide an object model to compose FetchXml queries using either JavaScript directly, 
 or by using TypeScript. 
-##In this README
+## In this README
 * [Ordinary use cases for client-side fetchXml queries](#ordinary-use-cases-for-client-side-fetchxml-queries)
 * [Why these libraries?](#why-these-libraries)
 * [Convert from XML to object and back](#convert-from-xml-to-object-and-back)
@@ -14,14 +14,14 @@ or by using TypeScript.
 * [How were these tested?](#how-were-these-tested)
 * [Why aren't these in the CRM SDK?](#why-arent-these-in-the-crm-sdk)
 
-##Ordinary use cases for client-side fetchXml queries
+## Ordinary use cases for client-side fetchXml queries
 Typically developers will use the advanced find tool in the CRM web application to compose a query and then 
 download the fetchxml definition of the query. They can then modify the query as needed and use the fetch.xsd 
 schema from the SDK if they want to make sure that the edits they make are valid according to the schema. They 
 can then include include the fetchxml query definition as a string within JavaScript functions in the application.
 This approach is effective and these libraries are not intended as a replacement for this proven approach.
 
-##Why these libraries?
+## Why these libraries?
 These libraries are  an experiment to provide a better development experience when a developer wants
 more flexibilty to compose a query programmatically. With the 2011 (SOAP) endpoint C# developers can use the
 [QueryExpression Class](https://msdn.microsoft.com/en-us/library/microsoft.xrm.sdk.query.queryexpression.aspx) 
@@ -39,13 +39,13 @@ in the FetchXML Schema and public properties to set the values. In addition, the
 to set every property and add or remove objects from collections. These methods are chainable because they return 
 the object that they are applied to.
 
-##Convert from XML to object and back
+## Convert from XML to object and back
 Both of these libraries provide a `Sdk.FetchXml.fetch.fromXml` static method which accept a fetchXML string and 
 return an `Sdk.FetchXML.fetch` object with all the child objects contained within it. The 
 `Sdk.FetchXml.fetch.toXml` method returns a string that is the valid fetchXml for the objects contained within it.
 So this is basically a way to deserialize and serialize the fetchXml into the `Sdk.FetchXml.fetch` object.
 
-##Why two separate libraries?
+## Why two separate libraries?
 At the end of the day, both of these result in a JavaScript library. I wrote the JavaScript library first. 
 Then I wrote the TypeScript version because more and more people have been asking for TypeScript libraries. 
 Not having a lot of experience with TypeScript, I wanted to see how it could be used to get the same result 
@@ -63,7 +63,7 @@ I certainly like that the IntelliSense provided for TypeScript is much more soli
 that the JavaScript language service provides in Visual Studio. But I think I'd need to build an full TypeScript application
 before it becomes my my preferred way to write JavaScript.
 
-##When to use these libraries?
+## When to use these libraries?
 These libraries are relatively large (3000+ lines of code) and even minified they are about 40KB. For the typical use
 case where a developer simply needs to configure a relatively static query, or just include a few variables, the approach
 described in [Ordinary use cases for client-side fetchXml queries](#ordinary-use-cases-for-client-side-fetchxml-queries) 
@@ -76,7 +76,7 @@ Microsoft CRM queries? Or perhaps some other Node.js or Cordova application I ca
 
 If you use these libraries, please let me know how you use them.
 
-##Examples
+## Examples
 Looking at the example in the CRM SDK [Use FetchXML to construct a query](https://msdn.microsoft.com/en-us/library/gg328117.aspx).
 ```xml
 <fetch mapping='logical'>
@@ -179,7 +179,7 @@ TypeScript is very similar to JavaScript except that you must use the `new` keyw
     );
     console.log(q.toXml());
 ```
-##Why do some classes have a read-only hash property?
+## Why do some classes have a read-only hash property?
 In order to implement methods to add or remove items from a collection it was challenging to identify which specific item
 to remove. If you had an instance of an object used in a query that would match using a `===` operator, you can detect it
 and remove it by reference. But if you add an object using the chaining methods you wouldn't have a reference and none of these
@@ -193,7 +193,7 @@ to an item in a collection.
 For  `Sdk.FetchXml.entity`, `Sdk.FetchXml.linkEntity` and `Sdk.FetchXml.condition`, there are `removeAttributeByName` and `removeValueByValue` methods 
 because it seems that people will want to remove attributes or values based on the name or value directly.
 
-##How were these tested?
+## How were these tested?
 To test these I wrote a script to retrieve the fetchXML for all the system views (savedquery entity) and pass the string to the 
 `Sdk.FetchXml.fetch.fromXml` method to instantiate the object. Then I called the `toXml` method on that instantiated object. 
 After a few normalization adjustments, I compared the length of the strings to make sure they were identical.
@@ -238,7 +238,7 @@ function normalizeStrings(str) {
 }
 ```
 
-##Why aren't these in the CRM SDK?
+## Why aren't these in the CRM SDK?
 A combination of reasons:
 * It isn't known whether people are interested in this style of composing queries. If we publish them in the SDK it would 
 seem like this is something the CRM product team thinks people want and need. You might start seeing questions about it on 
